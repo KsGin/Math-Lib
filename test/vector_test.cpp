@@ -9,67 +9,164 @@
 
 using namespace Math;
 
+///////////////////////////////////////////// Vector2 Test /////////////////////////////////////////////
+
 /**
  * Vector2 construct() test function
  */
-TEST(Vector2 , Construct){
-    Vector2 *v1 = new Vector2(1 , 1);
-    ASSERT_TRUE(v1 != nullptr);
+TEST(Vector2, Constructor) {
+    Vector2 *v1 = new Vector2(1, 1);
+    ASSERT_TRUE(v1 && v1->x == 1 && v1->y == 1);
 
     Vector2 *v2 = new Vector2(*v1);
-    ASSERT_TRUE(v2 != nullptr);
+    ASSERT_TRUE(v2 && v1->x == 1 && v1->y == 1);
 
     delete v1;
     delete v2;
+
+    Vector2 v3 = Vector2(1, 10);
+    ASSERT_TRUE(v3.x == 1 && v3.y == 10);
+
+    Vector2 v4 = Vector2(v3);
+    ASSERT_TRUE(v4.x == 1 && v4.y == 10);
 }
 
 /**
  * Vector2 add() test function
  */
-TEST(Vector2 , Add){
-    EXPECT_EQ(Vector2(1 , 1) + Vector2(2 , 2) , Vector2(3 , 3));
-    EXPECT_EQ(Vector2(1.5 , 1) + Vector2(2 , 2) , Vector2(3.5 , 3));
-    EXPECT_EQ(Vector2(1 , 1.5) + Vector2(2 , 2) , Vector2(3 , 3.5));
-    EXPECT_EQ(Vector2(1.5 , 1) + Vector2(2.5 , 2) , Vector2(4 , 3));
+TEST(Vector2, Add) {
+    EXPECT_EQ(Vector2(1, 1) + Vector2(2, 2), Vector2(3, 3));
+    EXPECT_EQ(Vector2(1.5, 1) + Vector2(2, 2), Vector2(3.5, 3));
+    EXPECT_EQ(Vector2(1, 1.5) + Vector2(2, 2), Vector2(3, 3.5));
+    EXPECT_EQ(Vector2(1.5, 1) + Vector2(2.5, 2), Vector2(4, 3));
 }
 
 /**
  * Vector2 sub() test function
  */
-TEST(Vector2 , Sub){
-    EXPECT_EQ(Vector2(3 , 3) - Vector2(2 , 2) , Vector2(1 , 1));
-    EXPECT_EQ(Vector2(3.5 , 3) - Vector2(2 , 2) , Vector2(1.5 , 1));
-    EXPECT_EQ(Vector2(3 , 3.5) -Vector2(2 , 2) , Vector2(1 , 1.5));
-    EXPECT_EQ(Vector2(4 , 3) - Vector2(2.5 , 2) , Vector2(1.5 , 1));
+TEST(Vector2, Sub) {
+    EXPECT_EQ(Vector2(3, 3) - Vector2(2, 2), Vector2(1, 1));
+    EXPECT_EQ(Vector2(3.5, 3) - Vector2(2, 2), Vector2(1.5, 1));
+    EXPECT_EQ(Vector2(3, 3.5) - Vector2(2, 2), Vector2(1, 1.5));
+    EXPECT_EQ(Vector2(4, 3) - Vector2(2.5, 2), Vector2(1.5, 1));
 }
 
 /**
  * Vector2 length() test function
  */
-TEST(Vector2 , Length){
-    EXPECT_LE(fabs(Vector2(1 , 1).length() - sqrt(2)) , 0.001);
-    EXPECT_LE(fabs(Vector2(2 , 2).length() - sqrt(8)), 0.001);
-    EXPECT_LE(fabs(Vector2(5 , 6).length() - sqrt(pow(5 , 2) + pow(6 , 2))) , 0.001);
-    EXPECT_LE(fabs(Vector2(1.6 , 1.7).length() - sqrt(pow(1.6 , 2) + pow(1.7 , 2))) , 0.001);
-    EXPECT_LE(fabs(Vector2(12.9 , 1.1).length() - sqrt(pow(12.9 , 2) + pow(1.1 , 2))) , 0.001);
+TEST(Vector2, Length) {
+    EXPECT_LE(fabs(Vector2(1, 1).length() - sqrt(2)), 0.001);
+    EXPECT_LE(fabs(Vector2(2, 2).length() - sqrt(8)), 0.001);
+    EXPECT_LE(fabs(Vector2(5, 6).length() - sqrt(pow(5, 2) + pow(6, 2))), 0.001);
+    EXPECT_LE(fabs(Vector2(1.6, 1.7).length() - sqrt(pow(1.6, 2) + pow(1.7, 2))), 0.001);
+    EXPECT_LE(fabs(Vector2(12.9, 1.1).length() - sqrt(pow(12.9, 2) + pow(1.1, 2))), 0.001);
 }
 
 /**
  * Vector2 negate() test function
  */
-TEST(Vector2 , Negate){
-    EXPECT_EQ(Vector2(1 , 1).negate() , Vector2(-1  , -1));
-    EXPECT_EQ(Vector2(1 , -1).negate() , Vector2(-1  , 1));
-    EXPECT_EQ(Vector2(0 , 1).negate() , Vector2(0  , -1));
+TEST(Vector2, Negate) {
+    EXPECT_EQ(Vector2(1, 1).negate(), Vector2(-1, -1));
+    EXPECT_EQ(Vector2(1, -1).negate(), Vector2(-1, 1));
+    EXPECT_EQ(Vector2(0, 1).negate(), Vector2(0, -1));
 }
 
 /**
  * Vector2 normalize() test function
  */
-TEST(Vector2 , Normalize){
-    EXPECT_LE(fabs(Vector2(1 , 1).normalize().length() - 1) , 0.001);
-    EXPECT_LE(fabs(Vector2(11.2 , 12.1).normalize().length() - 1) , 0.001);
-    EXPECT_LE(fabs(Vector2(13 , 21).normalize().length() - 1) , 0.001);
-    EXPECT_LE(fabs(Vector2(111.11 , 123.1).normalize().length() - 1) , 0.001);
-    EXPECT_LE(fabs(Vector2(1.1 , 109).normalize().length() - 1) , 0.001);
+TEST(Vector2, Normalize) {
+    EXPECT_LE(fabs(Vector2(1, 1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector2(11.2, 12.1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector2(13, 21).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector2(111.11, 123.1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector2(1.1, 109).normalize().length() - 1), 0.001);
+}
+
+/**
+ * Vector2 scale() test function
+ */
+TEST(Vector2, Scale) {
+    EXPECT_EQ(Vector2(2, 2).scale(1, 0.5), Vector2(2, 1));
+    EXPECT_EQ(Vector2(2, 2).scale(0.5, 0.5), Vector2(1, 1));
+}
+
+
+////////////////////////////////////////////// Vector3 Test //////////////////////////////////////////
+
+/**
+ * Vector3 construct() test function
+ */
+TEST(Vector3, Constructor) {
+    Vector3 *v1 = new Vector3(1, 1, 1);
+    ASSERT_TRUE(v1 && v1->x == 1 && v1->y == 1 && v1->z == 1);
+
+    Vector3 *v2 = new Vector3(*v1);
+    ASSERT_TRUE(v2 && v2->x == 1 && v2->y == 1 && v2->z == 1);
+
+    delete v1;
+    delete v2;
+
+    Vector3 v3 = Vector3(1, 1, 1);
+    ASSERT_TRUE(v3.x == 1 && v3.y == 1 && v3.z == 1);
+    Vector3 v4 = Vector3(v3);
+    ASSERT_TRUE(v4.x == 1 && v4.y == 1 && v4.z == 1);
+}
+
+/**
+ * Vector3 add() test function
+ */
+TEST(Vector3, Add) {
+    EXPECT_EQ(Vector3(1, 1, 1) + Vector3(2, 2, 2), Vector3(3, 3, 3));
+    EXPECT_EQ(Vector3(1.5, 1, 1) + Vector3(2.5, 2, 2), Vector3(4, 3, 3));
+    EXPECT_EQ(Vector3(1, 2, 1) + Vector3(2, 2, 2), Vector3(3, 4, 3));
+}
+
+/**
+ * Vector3 sub() test function
+ */
+TEST(Vector3, Sub) {
+    EXPECT_EQ(Vector3(5, 3, 3) - Vector3(1.5, 2, 2), Vector3(3.5, 1, 1));
+    EXPECT_EQ(Vector3(5, 3.5, 3) - Vector3(1.5, 2, 2), Vector3(3.5, 1.5, 1));
+    EXPECT_EQ(Vector3(5, 3, 3.5) - Vector3(1.5, 2, 2), Vector3(3.5, 1, 1.5));
+    EXPECT_EQ(Vector3(5, 4, 3) - Vector3(1.5, 2.5, 2), Vector3(3.5, 1.5, 1));
+}
+
+
+/**
+ * Vector3 length() test function
+ */
+TEST(Vector3, Length) {
+    EXPECT_LE(fabs(Vector3(1, 1, 1).length() - sqrt(3)), 0.001);
+    EXPECT_LE(fabs(Vector3(2, 2, 2).length() - sqrt(12)), 0.001);
+    EXPECT_LE(fabs(Vector3(1, 5, 6).length() - sqrt(pow(1, 2) + pow(5, 2) + pow(6, 2))), 0.001);
+    EXPECT_LE(fabs(Vector3(1, 1.6, 1.7).length() - sqrt(pow(1, 2) + pow(1.6, 2) + pow(1.7, 2))), 0.001);
+    EXPECT_LE(fabs(Vector3(1, 12.9, 1.1).length() - sqrt(pow(1, 2) + pow(12.9, 2) + pow(1.1, 2))), 0.001);
+}
+
+/**
+ * Vector3 negate() test function
+ */
+TEST(Vector3, Negate) {
+    EXPECT_EQ(Vector3(1, 1, 1).negate(), Vector3(-1, -1, -1));
+    EXPECT_EQ(Vector3(1, -1, 1).negate(), Vector3(-1, 1, -1));
+    EXPECT_EQ(Vector3(0, 1, 1).negate(), Vector3(0, -1, -1));
+}
+
+/**
+ * Vector3 normalize() test function
+ */
+TEST(Vector3, Normalize) {
+    EXPECT_LE(fabs(Vector3(10.5, 1, 1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector3(110, 11.2, 12.1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector3(10, 13, 21).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector3(11.2, 111.11, 123.1).normalize().length() - 1), 0.001);
+    EXPECT_LE(fabs(Vector3(10, 1.1, 109).normalize().length() - 1), 0.001);
+}
+
+/**
+ * Vector3 scale() test function
+ */
+TEST(Vector3, Scale) {
+    EXPECT_EQ(Vector3(2, 2, 2).scale(0.5, 1, 0.5), Vector3(1, 2, 1));
+    EXPECT_EQ(Vector3(2, 2, 2).scale(0.5, 0.5, 0.5), Vector3(1, 1, 1));
 }
