@@ -221,6 +221,19 @@ namespace Math {
             return *this;
         }
 
+        /*
+         * 变化
+         */
+        static Vector3 transform(const Vector3& v3 , const Matrix& transMat){
+            
+        }
+
+        /*
+         * 齐次变换
+         */
+        static Vector3 transformCoordinates(const Vector3& v3 , const Matrix& transMat){
+
+        }
 
     };
 

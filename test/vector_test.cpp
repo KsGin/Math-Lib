@@ -90,6 +90,12 @@ TEST(Vector2, Scale) {
     EXPECT_EQ(Vector2(2, 2).scale(0.5, 0.5), Vector2(1, 1));
 }
 
+/*
+ * Vector2 transform() 方法测试
+ */
+TEST(Vector2, Transform){
+
+}
 
 ////////////////////////////////////////////// Vector3 Test Case //////////////////////////////////////////
 

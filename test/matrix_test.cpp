@@ -6,3 +6,7 @@
 
 #include "../sources/matrix.hpp"
 #include <gtest.h>
+
+TEST(Matrix , Identity){
+    
+}
