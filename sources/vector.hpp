@@ -225,7 +225,7 @@ namespace Math {
     };
 
     /**
-     * Class Vector4
+     * Vector4 类
      */
     class Vector4 {
 

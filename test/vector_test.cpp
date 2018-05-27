@@ -9,10 +9,10 @@
 
 using namespace Math;
 
-///////////////////////////////////////////// Vector2 Test /////////////////////////////////////////////
+///////////////////////////////////////////// Vector2 Test Case /////////////////////////////////////////////
 
 /**
- * Vector2 construct() test function
+ * Vector2 构造方法测试
  */
 TEST(Vector2, Constructor) {
     Vector2 *v1 = new Vector2(1, 1);
@@ -32,7 +32,7 @@ TEST(Vector2, Constructor) {
 }
 
 /**
- * Vector2 add() test function
+ * Vector2 add() 方法测试
  */
 TEST(Vector2, Add) {
     EXPECT_EQ(Vector2(1, 1) + Vector2(2, 2), Vector2(3, 3));
@@ -42,7 +42,7 @@ TEST(Vector2, Add) {
 }
 
 /**
- * Vector2 sub() test function
+ * Vector2 sub() 方法测试
  */
 TEST(Vector2, Sub) {
     EXPECT_EQ(Vector2(3, 3) - Vector2(2, 2), Vector2(1, 1));
@@ -52,7 +52,7 @@ TEST(Vector2, Sub) {
 }
 
 /**
- * Vector2 length() test function
+ * Vector2 length() 方法测试
  */
 TEST(Vector2, Length) {
     EXPECT_LE(fabs(Vector2(1, 1).length() - sqrt(2)), 0.001);
@@ -63,7 +63,7 @@ TEST(Vector2, Length) {
 }
 
 /**
- * Vector2 negate() test function
+ * Vector2 negate() 方法测试
  */
 TEST(Vector2, Negate) {
     EXPECT_EQ(Vector2(1, 1).negate(), Vector2(-1, -1));
@@ -72,7 +72,7 @@ TEST(Vector2, Negate) {
 }
 
 /**
- * Vector2 normalize() test function
+ * Vector2 normalize() 方法测试
  */
 TEST(Vector2, Normalize) {
     EXPECT_LE(fabs(Vector2(1, 1).normalize().length() - 1), 0.001);
@@ -83,7 +83,7 @@ TEST(Vector2, Normalize) {
 }
 
 /**
- * Vector2 scale() test function
+ * Vector2 scale() 方法测试
  */
 TEST(Vector2, Scale) {
     EXPECT_EQ(Vector2(2, 2).scale(1, 0.5), Vector2(2, 1));
@@ -91,10 +91,10 @@ TEST(Vector2, Scale) {
 }
 
 
-////////////////////////////////////////////// Vector3 Test //////////////////////////////////////////
+////////////////////////////////////////////// Vector3 Test Case //////////////////////////////////////////
 
 /**
- * Vector3 construct() test function
+ * Vector3 construct() 方法测试
  */
 TEST(Vector3, Constructor) {
     Vector3 *v1 = new Vector3(1, 1, 1);
@@ -113,7 +113,7 @@ TEST(Vector3, Constructor) {
 }
 
 /**
- * Vector3 add() test function
+ * Vector3 add() 方法测试
  */
 TEST(Vector3, Add) {
     EXPECT_EQ(Vector3(1, 1, 1) + Vector3(2, 2, 2), Vector3(3, 3, 3));
@@ -122,7 +122,7 @@ TEST(Vector3, Add) {
 }
 
 /**
- * Vector3 sub() test function
+ * Vector3 sub() 方法测试
  */
 TEST(Vector3, Sub) {
     EXPECT_EQ(Vector3(5, 3, 3) - Vector3(1.5, 2, 2), Vector3(3.5, 1, 1));
@@ -133,7 +133,7 @@ TEST(Vector3, Sub) {
 
 
 /**
- * Vector3 length() test function
+ * Vector3 length() 方法测试
  */
 TEST(Vector3, Length) {
     EXPECT_LE(fabs(Vector3(1, 1, 1).length() - sqrt(3)), 0.001);
@@ -144,7 +144,7 @@ TEST(Vector3, Length) {
 }
 
 /**
- * Vector3 negate() test function
+ * Vector3 negate() 方法测试
  */
 TEST(Vector3, Negate) {
     EXPECT_EQ(Vector3(1, 1, 1).negate(), Vector3(-1, -1, -1));
@@ -153,7 +153,7 @@ TEST(Vector3, Negate) {
 }
 
 /**
- * Vector3 normalize() test function
+ * Vector3 normalize() 方法测试
  */
 TEST(Vector3, Normalize) {
     EXPECT_LE(fabs(Vector3(10.5, 1, 1).normalize().length() - 1), 0.001);
@@ -164,7 +164,7 @@ TEST(Vector3, Normalize) {
 }
 
 /**
- * Vector3 scale() test function
+ * Vector3 scale() 方法测试
  */
 TEST(Vector3, Scale) {
     EXPECT_EQ(Vector3(2, 2, 2).scale(0.5, 1, 0.5), Vector3(1, 2, 1));
