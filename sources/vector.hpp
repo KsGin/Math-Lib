@@ -21,7 +21,7 @@ namespace Math {
         /**
          * 数值定义
          */
-        float x, y;
+        float _x, _y;
 
         /**
          * 空构造方法
@@ -31,25 +31,25 @@ namespace Math {
         /**
          * 值构造方法
          */
-        Vector2(const float _x, const float _y) {
-            x = _x;
-            y = _y;
+        Vector2(const float vx, const float vy) {
+            _x = vx;
+            _y = vy;
         }
 
         /**
          * 对象拷贝方法
          */
         Vector2(const Vector2 &v2) {
-            x = v2.x;
-            y = v2.y;
+            _x = v2._x;
+            _y = v2._y;
         }
 
         /**
          * 重载 =
          */
         Vector2 &operator=(const Vector2 &v2) {
-            x = v2.x;
-            y = v2.y;
+            _x = v2._x;
+            _y = v2._y;
             return *this;
         }
 
@@ -57,29 +57,29 @@ namespace Math {
          * 重载 +
          */
         Vector2 operator+(const Vector2 &v2) const {
-            return Vector2(x + v2.x, y + v2.y);
+            return Vector2(_x + v2._x, _y + v2._y);
         }
 
         /**
          * 重载 -
          */
         Vector2 operator-(const Vector2 &v2) const {
-            return Vector2(x - v2.x, y - v2.y);
+            return Vector2(_x - v2._x, _y - v2._y);
         }
 
         /**
          * 判断相等
          */
         bool operator==(const Vector2 &v2) const {
-            return x == v2.x && y == v2.y;
+            return _x == v2._x && _y == v2._y;
         }
 
         /**
          * 取负
          */
         Vector2 &negate() {
-            x = -x;
-            y = -y;
+            _x = -_x;
+            _y = -_y;
             return *this;
         }
 
@@ -87,8 +87,8 @@ namespace Math {
          * 缩放
          */
         Vector2 &scale(float scaleX, float scaleY) {
-            x *= scaleX;
-            y *= scaleY;
+            _x *= scaleX;
+            _y *= scaleY;
             return *this;
         }
 
@@ -96,7 +96,7 @@ namespace Math {
          * 求长度
          */
         float length() {
-            return sqrt(x * x + y * y);
+            return sqrt(_x * _x + _y * _y);
         }
 
         /**
@@ -105,18 +105,18 @@ namespace Math {
         Vector2 &normalize() {
             auto length = this->length();
             if (length == 0) return *this;
-            x /= length;
-            y /= length;
+            _x /= length;
+            _y /= length;
             return *this;
         }
 
         /**
          * 变换
          */
-        static Vector2 transfrom(Vector2& v , Matrix transMat){
-            float x = v.x * transMat.m[0] + v.x * transMat.m[4];
-            float y = v.y * transMat.m[1] + v.y * transMat.m[5];
-            return Vector2(x , y);
+        static Vector2 transfrom(const Vector2 &v, Matrix transMat) {
+            float x = v._x * transMat._m[0] + v._x * transMat._m[4];
+            float y = v._y * transMat._m[1] + v._y * transMat._m[5];
+            return Vector2(x, y);
         }
 
     };
@@ -126,7 +126,7 @@ namespace Math {
      */
     class Vector3 {
     public:
-        float x, y, z;
+        float _x, _y, _z;
 
         /**
          * 空构造方法
@@ -136,28 +136,28 @@ namespace Math {
         /**
          * 值构造方法
          */
-        Vector3(float _x, float _y, float _z) {
-            x = _x;
-            y = _y;
-            z = _z;
+        Vector3(float vx, float vy, float vz) {
+            _x = vx;
+            _y = vy;
+            _z = vz;
         }
 
         /**
          * 拷贝构造
          */
         Vector3(const Vector3 &v3) {
-            x = v3.x;
-            y = v3.y;
-            z = v3.z;
+            _x = v3._x;
+            _y = v3._y;
+            _z = v3._z;
         }
 
         /**
          * 重载 =
          */
         Vector3 &operator=(const Vector3 &v3) {
-            x = v3.x;
-            y = v3.y;
-            z = v3.z;
+            _x = v3._x;
+            _y = v3._y;
+            _z = v3._z;
             return *this;
         }
 
@@ -165,30 +165,30 @@ namespace Math {
          * 重载 +
          */
         Vector3 operator+(const Vector3 &v3) {
-            return Vector3(x + v3.x, y + v3.y, z + v3.z);
+            return Vector3(_x + v3._x, _y + v3._y, _z + v3._z);
         }
 
         /**
          * 重载 -
          */
         Vector3 operator-(const Vector3 &v3) {
-            return Vector3(x - v3.x, y - v3.y, z - v3.z);
+            return Vector3(_x - v3._x, _y - v3._y, _z - v3._z);
         }
 
         /**
          * 重载 ==
          */
         bool operator==(const Vector3 &v3) const {
-            return x == v3.x && y == v3.y && z == v3.z;
+            return _x == v3._x && _y == v3._y && _z == v3._z;
         }
 
         /**
          * 取负
          */
         Vector3 &negate() {
-            x = -x;
-            y = -y;
-            z = -z;
+            _x = -_x;
+            _y = -_y;
+            _z = -_z;
             return *this;
         }
 
@@ -196,9 +196,9 @@ namespace Math {
          * 缩放
          */
         Vector3 &scale(float scaleX, float scaleY, float scaleZ) {
-            x *= scaleX;
-            y *= scaleY;
-            z *= scaleZ;
+            _x *= scaleX;
+            _y *= scaleY;
+            _z *= scaleZ;
             return *this;
         }
 
@@ -206,7 +206,7 @@ namespace Math {
          * 求长度
          */
         float length() {
-            return sqrt(x * x + y * y + z * z);
+            return sqrt(_x * _x + _y * _y + _z * _z);
         }
 
         /**
@@ -215,33 +215,49 @@ namespace Math {
         Vector3 &normalize() {
             auto length = this->length();
             if (length == 0) return *this;
-            x /= length;
-            y /= length;
-            z /= length;
+            _x /= length;
+            _y /= length;
+            _z /= length;
             return *this;
         }
 
         /*
-         * 变化
+         * 变换
          */
-        static Vector3 transform(const Vector3& v3 , const Matrix& transMat){
-            
+        static Vector3 transform(const Vector3 &v3, const Matrix &transMat) {
+            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8];
+            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9];
+            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10];
+            return Vector3(x, y, z);
         }
 
         /*
          * 齐次变换
          */
-        static Vector3 transformCoordinates(const Vector3& v3 , const Matrix& transMat){
-
+        static Vector3 transformCoordinates(const Vector3 &v3, const Matrix &transMat) {
+            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8] + transMat._m[12];
+            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9] + transMat._m[13];
+            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10] + transMat._m[14];
+            float w = v3._x * transMat._m[3] + v3._y * transMat._m[7] + v3._z * transMat._m[11] + transMat._m[15];
+            return Vector3(x / w, y / w, z / w);
         }
 
-    };
+        /*
+         * 求点积
+         */
+        static float dot(const Vector3 &vl, const Vector3 &vr) {
+            return vl._x * vr._x + vl._y * vr._y + vl._z * vr._z;
+        }
 
-    /**
-     * Vector4 类
-     */
-    class Vector4 {
-
+        /*
+         * 求叉积
+         */
+        static Vector3 cross(const Vector3 &vl, const Vector3 &vr) {
+            float x = vl._y * vr._z - vl._z * vr._y;
+            float y = vl._z * vr._x - vl._x * vr._z;
+            float z = vl._x * vr._y - vl._y * vr._x;
+            return Vector3(x, y, z);
+        }
     };
 }
 
