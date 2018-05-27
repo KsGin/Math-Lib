@@ -9,9 +9,14 @@
 
 namespace Math {
     /**
-     * Class Matrix
+     * 矩阵类
      */
     class Matrix {
+
+    public:
+        float m[16];
+
+
 
     };
 }

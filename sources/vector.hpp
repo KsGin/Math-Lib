@@ -8,29 +8,28 @@
 #define MATHLIB_VECTOR_HPP
 
 #include <cmath>
+#include "matrix.hpp"
 
 namespace Math {
 
     /**
-     *  Class Vector2
+     *  Vector2 向量类
      */
     class Vector2 {
 
     public:
         /**
-         * x , y value
+         * 数值定义
          */
         float x, y;
 
         /**
-         * empty constructor
+         * 空构造方法
          */
         Vector2() {}
 
         /**
-         * value copy constructor
-         * @param _x x value
-         * @param _y y value
+         * 值构造方法
          */
         Vector2(const float _x, const float _y) {
             x = _x;
@@ -38,8 +37,7 @@ namespace Math {
         }
 
         /**
-         * object copy constructor
-         * @param v2 vector object reference
+         * 对象拷贝方法
          */
         Vector2(const Vector2 &v2) {
             x = v2.x;
@@ -47,9 +45,7 @@ namespace Math {
         }
 
         /**
-         * copy constructor
-         * @param v2 object
-         * @return
+         * 重载 =
          */
         Vector2 &operator=(const Vector2 &v2) {
             x = v2.x;
@@ -58,35 +54,28 @@ namespace Math {
         }
 
         /**
-         * add function
-         * @param v2 vector object reference
-         * @return result
+         * 重载 +
          */
         Vector2 operator+(const Vector2 &v2) const {
             return Vector2(x + v2.x, y + v2.y);
         }
 
         /**
-         * sub function
-         * @param v2 vector object reference
-         * @return result
+         * 重载 -
          */
         Vector2 operator-(const Vector2 &v2) const {
             return Vector2(x - v2.x, y - v2.y);
         }
 
         /**
-         * equal function
-         * @param v2 vector object reference
-         * @return result (ture or flase)
+         * 判断相等
          */
         bool operator==(const Vector2 &v2) const {
             return x == v2.x && y == v2.y;
         }
 
         /**
-         * negate function
-         * @return reslut
+         * 取负
          */
         Vector2 &negate() {
             x = -x;
@@ -95,9 +84,7 @@ namespace Math {
         }
 
         /**
-         * scale function
-         * @param scale scale value
-         * @return result
+         * 缩放
          */
         Vector2 &scale(float scaleX, float scaleY) {
             x *= scaleX;
@@ -106,16 +93,14 @@ namespace Math {
         }
 
         /**
-         * length function
-         * @return result
+         * 求长度
          */
         float length() {
             return sqrt(x * x + y * y);
         }
 
         /**
-         * normalize function
-         * @return result
+         * 归一化
          */
         Vector2 &normalize() {
             auto length = this->length();
@@ -125,28 +110,31 @@ namespace Math {
             return *this;
         }
 
+        /**
+         * 变换
+         */
+        static Vector2 transfrom(Vector2& v , Matrix transMat){
+            float x = v.x * transMat.m[0] + v.x * transMat.m[4];
+            float y = v.y * transMat.m[1] + v.y * transMat.m[5];
+            return Vector2(x , y);
+        }
+
     };
 
     /**
-     * Class Vector3
+     * Vector3 类
      */
     class Vector3 {
     public:
-        /**
-         * x , y , z value define
-         */
         float x, y, z;
 
         /**
-         * empty construct
+         * 空构造方法
          */
         Vector3() {}
 
         /**
-         * value copy construct
-         * @param _x x value
-         * @param _y y value
-         * @param _z z value
+         * 值构造方法
          */
         Vector3(float _x, float _y, float _z) {
             x = _x;
@@ -155,8 +143,7 @@ namespace Math {
         }
 
         /**
-         * object copy construct
-         * @param v3 object reference
+         * 拷贝构造
          */
         Vector3(const Vector3 &v3) {
             x = v3.x;
@@ -165,9 +152,7 @@ namespace Math {
         }
 
         /**
-         * copy constructor
-         * @param v3 object reference
-         * @return result
+         * 重载 =
          */
         Vector3 &operator=(const Vector3 &v3) {
             x = v3.x;
@@ -177,35 +162,28 @@ namespace Math {
         }
 
         /**
-         * add function
-         * @param v3 object reference
-         * @return result
+         * 重载 +
          */
         Vector3 operator+(const Vector3 &v3) {
             return Vector3(x + v3.x, y + v3.y, z + v3.z);
         }
 
         /**
-         * sub function
-         * @param v3 object reference
-         * @return result
+         * 重载 -
          */
         Vector3 operator-(const Vector3 &v3) {
             return Vector3(x - v3.x, y - v3.y, z - v3.z);
         }
 
         /**
-         * equal function
-         * @param v3 object reference
-         * @return
+         * 重载 ==
          */
         bool operator==(const Vector3 &v3) const {
             return x == v3.x && y == v3.y && z == v3.z;
         }
 
         /**
-         * negate function
-         * @return reslut
+         * 取负
          */
         Vector3 &negate() {
             x = -x;
@@ -215,9 +193,7 @@ namespace Math {
         }
 
         /**
-         * scale function
-         * @param scale scale value
-         * @return result
+         * 缩放
          */
         Vector3 &scale(float scaleX, float scaleY, float scaleZ) {
             x *= scaleX;
@@ -227,16 +203,14 @@ namespace Math {
         }
 
         /**
-         * length function
-         * @return result
+         * 求长度
          */
         float length() {
             return sqrt(x * x + y * y + z * z);
         }
 
         /**
-         * normalize function
-         * @return result
+         * 归一化
          */
         Vector3 &normalize() {
             auto length = this->length();
@@ -246,6 +220,8 @@ namespace Math {
             z /= length;
             return *this;
         }
+
+
     };
 
     /**
