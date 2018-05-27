@@ -74,7 +74,7 @@ namespace Math {
         /*
          * 重载 =
          */
-        Matrix operator=(const Matrix& mat){
+        Matrix operator=(const Matrix &mat) {
             return Matrix(mat);
         }
 
@@ -111,6 +111,16 @@ namespace Math {
         }
 
         /*
+         * 重载 ==
+         */
+        bool operator==(const Matrix &mat) const {
+            for (int i = 0; i < 16; ++i) {
+                if (mat._m[i] != _m[i]) return false;
+            }
+            return true;
+        }
+
+        /*
          *  获得单位矩阵
          */
         static Matrix identity() {
@@ -119,6 +129,30 @@ namespace Math {
                     0, 1, 0, 0,
                     0, 0, 1, 0,
                     0, 0, 0, 1);
+        }
+
+        /*
+         * 获得缩放矩阵
+         */
+        static Matrix scale(float x, float y, float z) {
+            return Matrix(
+                    x, 0, 0, 0,
+                    0, y, 0, 0,
+                    0, 0, z, 0,
+                    0, 0, 0, 1
+            );
+        }
+
+        /*
+         * 获得平移矩阵
+         */
+        static Matrix translate(float x, float y, float z) {
+            return Matrix(
+                    1, 0, 0, 0,
+                    0, 1, 0, 0,
+                    0, 0, 1, 0,
+                    x, y, z, 1
+            );
         }
 
     };
