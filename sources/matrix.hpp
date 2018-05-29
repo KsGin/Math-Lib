@@ -8,7 +8,6 @@
 #define MATHLIB_MATRIX_HPP
 
 #include <cmath>
-#include "vector.hpp"
 
 namespace Math {
     /**
@@ -268,28 +267,6 @@ namespace Math {
                     tm[12], tm[13], tm[14], tm[15]
             );
         };
-
-        /*
-         * 观察矩阵 LookAt
-         */
-        static Matrix lookAtLH(const Vector3 &eye, const Vector3 &target, const Vector3 &up) {
-            Vector3 z = target - eye;
-            z.normalize();
-            Vector3 x = Vector3::cross(up, z);
-            x.normalize();
-            Vector3 y = Vector3::cross(z, x);
-
-            float ex = Vector3::dot(x, eye);
-            float ey = Vector3::dot(y, eye);
-            float ez = Vector3::dot(z, eye);
-
-            return Matrix(
-                    x._x, y._x, z._x, 0,
-                    x._y, y._y, z._y, 0,
-                    x._z, y._z, z._z, 0,
-                    ex, ey, ez, 1
-            );
-        }
 
         /*
          * 透视投影矩阵
