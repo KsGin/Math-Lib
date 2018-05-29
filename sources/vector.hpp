@@ -8,7 +8,6 @@
 #define MATHLIB_VECTOR_HPP
 
 #include <cmath>
-#include "matrix.hpp"
 
 namespace Math {
 
@@ -110,15 +109,6 @@ namespace Math {
             return *this;
         }
 
-        /**
-         * 变换
-         */
-        static Vector2 transfrom(const Vector2 &v, const Matrix& transMat) {
-            float x = v._x * transMat._m[0] + v._x * transMat._m[4];
-            float y = v._y * transMat._m[1] + v._y * transMat._m[5];
-            return Vector2(x, y);
-        }
-
     };
 
     /**
@@ -164,14 +154,14 @@ namespace Math {
         /**
          * 重载 +
          */
-        Vector3 operator+(const Vector3 &v3) const{
+        Vector3 operator+(const Vector3 &v3) const {
             return Vector3(_x + v3._x, _y + v3._y, _z + v3._z);
         }
 
         /**
          * 重载 -
          */
-        Vector3 operator-(const Vector3 &v3) const{
+        Vector3 operator-(const Vector3 &v3) const {
             return Vector3(_x - v3._x, _y - v3._y, _z - v3._z);
         }
 
@@ -205,7 +195,7 @@ namespace Math {
         /**
          * 求长度
          */
-        float length() const{
+        float length() const {
             return sqrt(_x * _x + _y * _y + _z * _z);
         }
 
@@ -219,27 +209,6 @@ namespace Math {
             _y /= length;
             _z /= length;
             return *this;
-        }
-
-        /*
-         * 变换
-         */
-        static Vector3 transform(const Vector3 &v3, const Matrix &transMat) {
-            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8];
-            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9];
-            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10];
-            return Vector3(x, y, z);
-        }
-
-        /*
-         * 齐次变换
-         */
-        static Vector3 transformCoordinates(const Vector3 &v3, const Matrix &transMat) {
-            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8] + transMat._m[12];
-            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9] + transMat._m[13];
-            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10] + transMat._m[14];
-            float w = v3._x * transMat._m[3] + v3._y * transMat._m[7] + v3._z * transMat._m[11] + transMat._m[15];
-            return Vector3(x / w, y / w, z / w);
         }
 
         /*

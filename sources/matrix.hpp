@@ -9,7 +9,10 @@
 
 #include <cmath>
 
+#include "vector.hpp"
+
 namespace Math {
+
     /**
      * 矩阵类
      */
@@ -269,11 +272,64 @@ namespace Math {
         };
 
         /*
++         * 观察矩阵 LookAt
++         */
+        static Matrix lookAtLH(const Vector3 &eye, const Vector3 &target, const Vector3 &up) {
+            Vector3 z = target - eye;
+            z.normalize();
+            Vector3 x = Vector3::cross(up, z);
+            x.normalize();
+            Vector3 y = Vector3::cross(z, x);
+
+            float ex = Vector3::dot(x, eye);
+            float ey = Vector3::dot(y, eye);
+            float ez = Vector3::dot(z, eye);
+
+            return Matrix(
+                    x._x, y._x, z._x, 0,
+                    x._y, y._y, z._y, 0,
+                    x._z, y._z, z._z, 0,
+                    ex, ey, ez, 1);
+        }
+
+        /*
          * 透视投影矩阵
          */
         static Matrix perspectiveFovLH(float fov, float aspect, float near, float far) {
             return Matrix::zero();
         }
+
+
+        /**
+         * 变换二维向量
+         */
+        static Vector2 transfrom(const Vector2 &v, const Matrix &transMat) {
+            float x = v._x * transMat._m[0] + v._x * transMat._m[4];
+            float y = v._y * transMat._m[1] + v._y * transMat._m[5];
+            return Vector2(x, y);
+        }
+
+        /*
+        * 变换三维向量
+        */
+        static Vector3 transform(const Vector3 &v3, const Matrix &transMat) {
+            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8];
+            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9];
+            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10];
+            return Vector3(x, y, z);
+        }
+
+        /*
+         * 齐次变换三维向量
+         */
+        static Vector3 transformCoordinates(const Vector3 &v3, const Matrix &transMat) {
+            float x = v3._x * transMat._m[0] + v3._y * transMat._m[4] + v3._z * transMat._m[8] + transMat._m[12];
+            float y = v3._x * transMat._m[1] + v3._y * transMat._m[5] + v3._z * transMat._m[9] + transMat._m[13];
+            float z = v3._x * transMat._m[2] + v3._y * transMat._m[6] + v3._z * transMat._m[10] + transMat._m[14];
+            float w = v3._x * transMat._m[3] + v3._y * transMat._m[7] + v3._z * transMat._m[11] + transMat._m[15];
+            return Vector3(x / w, y / w, z / w);
+        }
+
 
     };
 }

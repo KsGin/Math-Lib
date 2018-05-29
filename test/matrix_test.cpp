@@ -130,3 +130,23 @@ TEST(Matrix, Transpose) {
     translateMat = translateMat.multiply(Matrix::rotationX(16)).multiply(Matrix::rotationY(15));
     EXPECT_EQ(Matrix::transpose(Matrix::transpose(translateMat)), translateMat);
 }
+
+/*
+ * transform() 方法测试
+ */
+TEST(Matrix, Transform) {
+    Matrix transMat = Matrix::identity();
+    EXPECT_EQ(Matrix::transfrom(Vector2(1, 2), transMat), Vector2(1, 2));
+    EXPECT_EQ(Matrix::transfrom(Vector2(3, 2), transMat), Vector2(3, 2));
+    EXPECT_EQ(Matrix::transform(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
+    EXPECT_EQ(Matrix::transform(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
+}
+
+/*
+ * Vector3 transformCoordinates() 方法测试
+ */
+TEST(Matrix, TransformCoordinates) {
+    Matrix transMat = Matrix::identity();
+    EXPECT_EQ(Matrix::transformCoordinates(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
+    EXPECT_EQ(Matrix::transformCoordinates(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
+}

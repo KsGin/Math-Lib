@@ -93,15 +93,6 @@ TEST(Vector2, Scale) {
     EXPECT_EQ(Vector2(2, 2).scale(0.5, 0.5), Vector2(1, 1));
 }
 
-/*
- * Vector2 transform() 方法测试
- */
-TEST(Vector2, Transform) {
-    Matrix transMat = Matrix::identity();
-    EXPECT_EQ(Vector2::transfrom(Vector2(1, 2), transMat), Vector2(1, 2));
-    EXPECT_EQ(Vector2::transfrom(Vector2(3, 2), transMat), Vector2(3, 2));
-}
-
 ////////////////////////////////////////////// Vector3 Test Case //////////////////////////////////////////
 
 /**
@@ -180,24 +171,6 @@ TEST(Vector3, Normalize) {
 TEST(Vector3, Scale) {
     EXPECT_EQ(Vector3(2, 2, 2).scale(0.5, 1, 0.5), Vector3(1, 2, 1));
     EXPECT_EQ(Vector3(2, 2, 2).scale(0.5, 0.5, 0.5), Vector3(1, 1, 1));
-}
-
-/*
- * Vector3 transform() 方法测试
- */
-TEST(Vector3, Transform) {
-    Matrix transMat = Matrix::identity();
-    EXPECT_EQ(Vector3::transform(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
-    EXPECT_EQ(Vector3::transform(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
-}
-
-/*
- * Vector3 transformCoordinates() 方法测试
- */
-TEST(Vector3, TransformCoordinates) {
-    Matrix transMat = Matrix::identity();
-    EXPECT_EQ(Vector3::transformCoordinates(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
-    EXPECT_EQ(Vector3::transformCoordinates(Vector3(1, 2, 3), transMat), Vector3(1, 2, 3));
 }
 
 /*
