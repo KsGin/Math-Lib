@@ -24,6 +24,18 @@ namespace Math {
         Matrix() {}
 
     public:
+        /*
+         * 数据定义
+         */
+        union {
+            float _m[16];
+            struct {
+                float _11, _12, _13, _14;
+                float _21, _22, _23, _24;
+                float _31, _32, _33, _34;
+                float _41, _42, _43, _44;
+            };
+        };
 
 
         /*
@@ -33,48 +45,37 @@ namespace Math {
                float m5, float m6, float m7, float m8,
                float m9, float m10, float m11, float m12,
                float m13, float m14, float m15, float m16) {
-            _m = new float[16];
-            if (_m) {
-                _m[0] = m1;
-                _m[1] = m2;
-                _m[2] = m3;
-                _m[3] = m4;
-                _m[4] = m5;
-                _m[5] = m6;
-                _m[6] = m7;
-                _m[7] = m8;
-                _m[8] = m9;
-                _m[9] = m10;
-                _m[10] = m11;
-                _m[11] = m12;
-                _m[12] = m13;
-                _m[13] = m14;
-                _m[14] = m15;
-                _m[15] = m16;
-            }
+            _m[0] = m1;
+            _m[1] = m2;
+            _m[2] = m3;
+            _m[3] = m4;
+            _m[4] = m5;
+            _m[5] = m6;
+            _m[6] = m7;
+            _m[7] = m8;
+            _m[8] = m9;
+            _m[9] = m10;
+            _m[10] = m11;
+            _m[11] = m12;
+            _m[12] = m13;
+            _m[13] = m14;
+            _m[14] = m15;
+            _m[15] = m16;
         }
 
         /*
          * 引用构造函数
          */
         Matrix(const Matrix &mat) {
-            _m = new float[16];
-            if (_m && mat._m)
-                for (int i = 0; i < 16; ++i)
-                    _m[i] = mat._m[i];
+            for (int i = 0; i < 16; ++i)
+                _m[i] = mat._m[i];
         }
 
         /*
          * 析构函数
          */
         ~Matrix() {
-            delete[] _m;
         }
-
-        /*
-         * 数据指针
-         */
-        float *_m;
 
 
         /*
@@ -153,6 +154,13 @@ namespace Math {
                     tm[8], tm[9], tm[10], tm[11],
                     tm[12], tm[13], tm[14], tm[15]
             );
+        }
+
+        /*
+         * 重载 *
+         */
+        Matrix operator*(const Matrix &mat){
+            return multiply(mat);
         }
 
         /*
@@ -296,7 +304,13 @@ namespace Math {
          * 透视投影矩阵
          */
         static Matrix perspectiveFovLH(float fov, float aspect, float near, float far) {
-            return Matrix::zero();
+            float t = static_cast<float>(1 / (tan(fov * 0.5)));
+            return Matrix(
+                    t / aspect, 0, 0, 0,
+                    0, t, 0, 0,
+                    0, 0, -far / (near / far), 1,
+                    0, 0, near * far / (near - far), 0
+            );
         }
 
 

@@ -62,12 +62,10 @@ TEST(Matrix, Zero) {
 TEST(Matrix, Identity) {
     Matrix identityMatrix = Matrix::identity();
 
-    ASSERT_TRUE(identityMatrix._m);
-
-    EXPECT_EQ(identityMatrix._m[0], 1);
-    EXPECT_EQ(identityMatrix._m[5], 1);
-    EXPECT_EQ(identityMatrix._m[10], 1);
-    EXPECT_EQ(identityMatrix._m[15], 1);
+    EXPECT_EQ(identityMatrix._11, 1);
+    EXPECT_EQ(identityMatrix._22, 1);
+    EXPECT_EQ(identityMatrix._33, 1);
+    EXPECT_EQ(identityMatrix._44, 1);
 
     float sum = 0;
     for (int i = 0; i < 16; ++i) {
@@ -82,9 +80,9 @@ TEST(Matrix, Identity) {
  */
 TEST(Matrix, Scale) {
     Matrix scaleMat = Matrix::scale(5, 4, 3);
-    EXPECT_EQ(scaleMat._m[0], 5);
-    EXPECT_EQ(scaleMat._m[5], 4);
-    EXPECT_EQ(scaleMat._m[10], 3);
+    EXPECT_EQ(scaleMat._11, 5);
+    EXPECT_EQ(scaleMat._22, 4);
+    EXPECT_EQ(scaleMat._33, 3);
 
     float sum = 0;
     for (int i = 0; i < 16; ++i) {
@@ -99,9 +97,9 @@ TEST(Matrix, Scale) {
  */
 TEST(Matrix, Translate) {
     Matrix translateMat = Matrix::translate(3, 2, 2);
-    EXPECT_EQ(translateMat._m[12], 3);
-    EXPECT_EQ(translateMat._m[13], 2);
-    EXPECT_EQ(translateMat._m[14], 2);
+    EXPECT_EQ(translateMat._41, 3);
+    EXPECT_EQ(translateMat._42, 2);
+    EXPECT_EQ(translateMat._43, 2);
 
     float sum = 0;
     for (int i = 0; i < 16; ++i) {
@@ -129,6 +127,38 @@ TEST(Matrix, Transpose) {
     Matrix translateMat = Matrix::translate(1, 14, 13);
     translateMat = translateMat.multiply(Matrix::rotationX(16)).multiply(Matrix::rotationY(15));
     EXPECT_EQ(Matrix::transpose(Matrix::transpose(translateMat)), translateMat);
+}
+
+/*
+ * Matrix lookAtLH() 方法测试
+ */
+TEST(Matrix, LookAtLH) {
+    Vector3 eye = Vector3(0, 0, 5);
+    Vector3 target = Vector3(0, 0, 0);
+    Vector3 up = Vector3(0, 1, 0);
+    Matrix viewMat = Matrix::lookAtLH(eye, target, up);
+
+    EXPECT_EQ(viewMat._11, -1);
+    EXPECT_EQ(viewMat._22, 1);
+    EXPECT_EQ(viewMat._33, -1);
+    EXPECT_EQ(viewMat._43, -5);
+    EXPECT_EQ(viewMat._44, 1);
+}
+
+/*
+ * Matrix perspectiveFovLH() 方法测试
+ */
+TEST(Matrix, PerspectiveFovLH) {
+    float fov = 90;
+    float aspect = 4 / 3;
+    float near = 0.01;
+    float far = 1000;
+    Matrix projectionMat = Matrix::perspectiveFovLH(fov, aspect, near, far);
+
+    EXPECT_LE(projectionMat._11 - 1 / (tan(fov * 0.5)) / aspect, 0.0001);
+    EXPECT_LE(projectionMat._22 - 1 / (tan(fov * 0.5)), 0.0001);
+    EXPECT_LE(projectionMat._33 - -far / (near / far), 0.0001);
+    EXPECT_LE(projectionMat._43 - near * far / (near - far), 0.0001);
 }
 
 /*
