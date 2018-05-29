@@ -41,7 +41,8 @@ API 结构
     + `rotationZ()` ：生成绕 z 轴旋转矩阵
     + `transpose()` : 矩阵转置
     + `lookAtLH()` ：生成观察矩阵
-    + `perspectiveFovLH()` ：生成透视矩阵
+    + `perspectiveFovLH()` ：生成透视投影矩阵
+    + `orthoLH()` : 生成正交投影矩阵
     + `transform()` ：矩阵变换
     + `transformCoordinates()` ：矩阵齐次变换
 
