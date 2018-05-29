@@ -8,6 +8,7 @@
 #include "../sources/matrix.hpp"
 #include <gtest.h>
 
+
 using namespace Math;
 
 ///////////////////////////////////////////// Vector2 Test Case /////////////////////////////////////////////
@@ -16,6 +17,7 @@ using namespace Math;
  * Vector2 构造方法测试
  */
 TEST(Vector2, Constructor) {
+
     Vector2 *v1 = new Vector2(1, 1);
     ASSERT_TRUE(v1 && v1->_x == 1 && v1->_y == 1);
 

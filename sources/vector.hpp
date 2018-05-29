@@ -113,7 +113,7 @@ namespace Math {
         /**
          * 变换
          */
-        static Vector2 transfrom(const Vector2 &v, Matrix transMat) {
+        static Vector2 transfrom(const Vector2 &v, const Matrix& transMat) {
             float x = v._x * transMat._m[0] + v._x * transMat._m[4];
             float y = v._y * transMat._m[1] + v._y * transMat._m[5];
             return Vector2(x, y);
@@ -164,14 +164,14 @@ namespace Math {
         /**
          * 重载 +
          */
-        Vector3 operator+(const Vector3 &v3) {
+        Vector3 operator+(const Vector3 &v3) const{
             return Vector3(_x + v3._x, _y + v3._y, _z + v3._z);
         }
 
         /**
          * 重载 -
          */
-        Vector3 operator-(const Vector3 &v3) {
+        Vector3 operator-(const Vector3 &v3) const{
             return Vector3(_x - v3._x, _y - v3._y, _z - v3._z);
         }
 
@@ -205,7 +205,7 @@ namespace Math {
         /**
          * 求长度
          */
-        float length() {
+        float length() const{
             return sqrt(_x * _x + _y * _y + _z * _z);
         }
 
