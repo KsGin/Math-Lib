@@ -43,7 +43,7 @@ API 结构
     + `lookAtLH()` ：生成观察矩阵
     + `perspectiveFovLH()` ：生成透视矩阵
     + `transform()` ：矩阵变换
-    + `transformCoordinates()` ：矩阵齐次变化
+    + `transformCoordinates()` ：矩阵齐次变换
 
 文件结构
 

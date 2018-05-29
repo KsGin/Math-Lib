@@ -159,7 +159,7 @@ namespace Math {
         /*
          * 重载 *
          */
-        Matrix operator*(const Matrix &mat){
+        Matrix operator*(const Matrix &mat) {
             return multiply(mat);
         }
 
@@ -313,6 +313,17 @@ namespace Math {
             );
         }
 
+        /*
+         * 正交投影矩阵
+         */
+        static Matrix orthoLH(float width, float height, float near, float far) {
+            return Matrix(
+                    2 / width, 0, 0, 0,
+                    0, 2 / height, 0, 0,
+                    0, 0, 1 / (far - near), (-near) / (far - near),
+                    0, 0, 0, 1
+            );
+        }
 
         /**
          * 变换二维向量

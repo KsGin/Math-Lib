@@ -162,6 +162,22 @@ TEST(Matrix, PerspectiveFovLH) {
 }
 
 /*
+ * Matrix orthoLH() 方法测试
+ */
+TEST(Matrix, OrthoLH) {
+    float width = 1920;
+    float height = 1080;
+    float near = 0.01;
+    float far = 1000;
+    Matrix orthoMat = Matrix::orthoLH(width, height, near, far);
+    EXPECT_LE(orthoMat._11 - 2 / width, 0.0001);
+    EXPECT_LE(orthoMat._22 - 2 / height, 0.0001);
+    EXPECT_LE(orthoMat._33 - (1 / (far - near)), 0.0001);
+    EXPECT_LE(orthoMat._34 - (-near) / (far - near), 0.0001);
+    EXPECT_LE(orthoMat._44, 1);
+}
+
+/*
  * transform() 方法测试
  */
 TEST(Matrix, Transform) {
