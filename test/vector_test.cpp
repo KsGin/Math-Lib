@@ -55,6 +55,16 @@ TEST(Vector2, Sub) {
 }
 
 /**
+ * Vector2 mul() 方法测试
+ */
+TEST(Vector2, Mul) {
+    EXPECT_EQ(Vector2(1, 1) * 3, Vector2(3, 3));
+    EXPECT_EQ(Vector2(1, 1) * 2, Vector2(2, 2));
+    EXPECT_EQ(Vector2(1, 1) * 2, Vector2(2, 2));
+    EXPECT_EQ(Vector2(1, 1) * 2, Vector2(2, 2));
+}
+
+/**
  * Vector2 length() 方法测试
  */
 TEST(Vector2, Length) {
@@ -131,6 +141,16 @@ TEST(Vector3, Sub) {
     EXPECT_EQ(Vector3(5, 3.5, 3) - Vector3(1.5, 2, 2), Vector3(3.5, 1.5, 1));
     EXPECT_EQ(Vector3(5, 3, 3.5) - Vector3(1.5, 2, 2), Vector3(3.5, 1, 1.5));
     EXPECT_EQ(Vector3(5, 4, 3) - Vector3(1.5, 2.5, 2), Vector3(3.5, 1.5, 1));
+}
+
+/**
+ * Vector3 mul() 方法测试
+ */
+TEST(Vector3, Mul) {
+    EXPECT_EQ(Vector3(1, 1, 1) * 3, Vector3(3, 3, 3));
+    EXPECT_EQ(Vector3(1, 1, 1) * 2, Vector3(2, 2, 2));
+    EXPECT_EQ(Vector3(1, 1, 1) * 2, Vector3(2, 2, 2));
+    EXPECT_EQ(Vector3(1, 1, 1) * 2, Vector3(2, 2, 2));
 }
 
 
