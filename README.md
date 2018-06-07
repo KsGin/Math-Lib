@@ -10,6 +10,7 @@ API 结构
  
     + `operator+()` ：+
     + `operator-()` ：-
+    + `operator*()` : 数乘
     + `negate()` ：取负
     + `scale()` ：缩放
     + `length()` ：长度
@@ -19,6 +20,7 @@ API 结构
      
     + `operator+()` ：+
     + `operator-()` ：-
+    + `operator*()` : 数乘
     + `negate()` ：取负
     + `scale()` ：缩放
     + `length()` ：长度
